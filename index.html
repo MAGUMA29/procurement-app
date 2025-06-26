@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Procurement App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      margin: 0;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin: 1.5rem 0;
+      color: #333;
+    }
+
+    .button {
+      display: block;
+      width: 90%;
+      max-width: 400px;
+      margin: 1rem auto;
+      padding: 1.5rem;
+      font-size: 1.25rem;
+      background-color: #007aff;
+      color: white;
+      border: none;
+      border-radius: 1.5rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .button:active {
+      background-color: #005ecb;
+    }
+
+    #formSection {
+      display: none;
+      margin-top: 1rem;
+    }
+
+    input, textarea {
+      width: 90%;
+      max-width: 400px;
+      padding: 1rem;
+      margin: 0.5rem auto;
+      font-size: 1.1rem;
+      display: block;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+
+    #submitBtn {
+      background-color: #28a745;
+    }
+
+    #backBtn {
+      background-color: #6c757d;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧾 Procurement App</h1>
+
+  <button class="button" onclick="showForm()">🛒 Request Item</button>
+  <button class="button" onclick="window.open('https://docs.google.com/document/d/YOUR_DOC_ID', '_blank')">📄 Open Procurement Guide</button>
+
+  <div id="formSection">
+    <input type="text" placeholder="Item Name" id="itemName" required>
+    <input type="number" placeholder="Quantity" id="itemQty" min="1" required>
+    <textarea placeholder="Additional Notes" id="itemNotes"></textarea>
+    <button class="button" id="submitBtn" onclick="submitForm()">✅ Submit Request</button>
+    <button class="button" id="backBtn" onclick="hideForm()">⬅️ Back</button>
+  </div>
+
+  <script>
+    function showForm() {
+      document.getElementById('formSection').style.display = 'block';
+    }
+
+    function hideForm() {
+      document.getElementById('formSection').style.display = 'none';
+    }
+
+    function submitForm() {
+      const name = document.getElementById('itemName').value.trim();
+      const qty = document.getElementById('itemQty').value;
+      const notes = document.getElementById('itemNotes').value.trim();
+
+      if (!name || !qty) {
+        alert("Please fill out the item name and quantity.");
+        return;
+      }
+
+      alert(`Item requested:\n${name} (x${qty})\nNotes: ${notes}`);
+
+      // Clear form
+      document.getElementById('itemName').value = '';
+      document.getElementById('itemQty').value = '';
+      document.getElementById('itemNotes').value = '';
+      hideForm();
+    }
+  </script>
+
+</body>
+</html>
